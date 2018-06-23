@@ -7,3 +7,5 @@
 
 
 2.《iOS测试指南》 -> [Go](https://github.com/xjh093/ReadingNotes/tree/master/Books/%E3%80%8AiOS%E6%B5%8B%E8%AF%95%E6%8C%87%E5%8D%97%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0)
+
+3.《零起点飞学C语言(康莉)》
