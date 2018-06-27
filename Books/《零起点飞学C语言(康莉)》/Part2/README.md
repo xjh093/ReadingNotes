@@ -20,29 +20,29 @@
 
 5.整形：
 
--整形常量：主要有int,long两种类型。
+- 整形常量：主要有int,long两种类型。
 
--整形变量：int,short int,unsigned int,unsigned short,long,unsigned long
+- 整形变量：int,short int,unsigned int,unsigned short,long,unsigned long
 
 
 ---
 
 6.实型：
 
--实型常量：实数或浮点数。
+- 实型常量：实数或浮点数。
 
--实型变量：单精度(float)，双精度(double)
+- 实型变量：单精度(float)，双精度(double)
 
 
 ---
 
 7.字符型：
 
--字符常量：用单引号括起来的一个字符。
+- 字符常量：用单引号括起来的一个字符。
 
--字符串常量：用双引号括起来的字符序列。
+- 字符串常量：用双引号括起来的字符序列。
 
--字符变量：用来存放单个字符，占用一个字节的内存。
+- 字符变量：用来存放单个字符，占用一个字节的内存。
 
 
 ---
