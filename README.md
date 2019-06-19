@@ -12,3 +12,6 @@
 
 
 4.《图解HTTP[上野宣]》-> [Go](https://github.com/xjh093/ReadingNotes/tree/master/Books/%E3%80%8A%E5%9B%BE%E8%A7%A3HTTP%5B%E4%B8%8A%E9%87%8E%E5%AE%A3%5D%E3%80%8B)
+
+
+5.《FFmpeg从入门到精通》 -> [Go](https://github.com/xjh093/ReadingNotes/tree/master/Books/%E3%80%8AFFmpeg%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E3%80%8B)
