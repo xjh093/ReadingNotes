@@ -10,10 +10,22 @@
 - 至本书完稿，FFmpeg 已经发布到 3.3 版本。
 - blabla...
 
-3.基本组成
-- AVFormat
-- AVCodec
-- AVFilter
-- AVDevice
-- AVUtil
+3.基本组成模块
+AVFormat、AVCodec、AVFilter、AVDevice、AVUtil等模块库。
+
+- AVFormat - 封装模块
+- AVCodec  - 编解码模块
+- AVFilter - 滤镜模块
+- swscale  - 图像转换计算模块
+- swresample - 音频转换计算模块
+
+4.编解码工具 ffmpeg
+- 例子：
+   `./ffmpeg -i input.mp4 output.avi`
+
+这条命令所做的工作：
+- 获得输入源 input.mp4
+- 转码
+- 输出文件 output.avi
+
 
