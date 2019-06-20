@@ -30,9 +30,11 @@ AVFormat、AVCodec、AVFilter、AVDevice、AVUtil等模块库。
 
 示例1：`ffmpeg -i 1.mp4 out.avi`
 
+输出结果：[1.txt](https://github.com/xjh093/ReadingNotes/blob/master/Books/%E3%80%8AFFmpeg%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E3%80%8B/Part02/1.txt)
 
 示例2：`ffmpeg -i 1.mp4 -f avi out.dat`
 
+输出结果：[2.txt](https://github.com/xjh093/ReadingNotes/blob/master/Books/%E3%80%8AFFmpeg%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E3%80%8B/Part02/2.txt)
 
 参数`-f`
 - 制定了输出文件的容器格式
@@ -56,18 +58,22 @@ AVFormat、AVCodec、AVFilter、AVDevice、AVUtil等模块库。
 
 7.FFmpeg 的多媒体分析器 ffprobe
 
-示例1：`ffprobe -show_streams out.dat`
-输出结果：
+示例：`ffprobe -show_streams out.dat`
+
+输出结果：[3.txt](https://github.com/xjh093/ReadingNotes/blob/master/Books/%E3%80%8AFFmpeg%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E3%80%8B/Part02/3.txt)
 
 8.查看支持的编解码器
 `ffmpeg -codecs`
-输出结果：
+
+输出结果：[4.txt](https://github.com/xjh093/ReadingNotes/blob/master/Books/%E3%80%8AFFmpeg%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E3%80%8B/Part02/4.txt)
 
 9.查看支持的封装格式
 `ffmpeg -formats`
-输出结果：
+
+输出结果：[5.txt](https://github.com/xjh093/ReadingNotes/blob/master/Books/%E3%80%8AFFmpeg%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E3%80%8B/Part02/5.txt)
 
 10.查看支持的滤镜
 `ffmpeg -filters`
-输出结果：
+
+输出结果：[6.txt](https://github.com/xjh093/ReadingNotes/blob/master/Books/%E3%80%8AFFmpeg%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E3%80%8B/Part02/6.txt)
 
