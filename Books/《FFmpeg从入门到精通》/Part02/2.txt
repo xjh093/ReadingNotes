@@ -1,0 +1,35 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '1.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf57.82.100
+  Duration: 00:00:14.76, start: 0.000000, bitrate: 961 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 512x288, 863 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 96 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> mpeg4 (native))
+  Stream #0:1 -> #0:1 (aac (native) -> mp3 (libmp3lame))
+Press [q] to stop, [?] for help
+Output #0, avi, to 'out.dat':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    ISFT            : Lavf58.20.100
+    Stream #0:0(und): Video: mpeg4 (FMP4 / 0x34504D46), yuv420p, 512x288, q=2-31, 200 kb/s, 15 fps, 15 tbn, 15 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc58.35.100 mpeg4
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: -1
+    Stream #0:1(und): Audio: mp3 (libmp3lame) (U[0][0][0] / 0x0055), 48000 Hz, stereo, fltp (default)
+    Metadata:
+      handler_name    : SoundHandler
+      encoder         : Lavc58.35.100 libmp3lame
+frame=  221 fps=0.0 q=15.0 Lsize=     799kB time=00:00:14.76 bitrate= 443.5kbits/s speed=40.6x    
+video:539kB audio:231kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 3.823911%
