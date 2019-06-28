@@ -17,3 +17,10 @@
 ### 1.1.1 常见格式
 
 - MPEG/MPG/DAT
+
+MPEG(运动图像专家组)是 Motion Picture Experts Group 的缩写。
+
+格式：
+- MPEG-1: VCD，
+- MPEG-2: DVD，
+- MPEG-4:
