@@ -21,6 +21,6 @@
 MPEG(运动图像专家组)是 Motion Picture Experts Group 的缩写。
 
 格式：
-- MPEG-1: VCD，
-- MPEG-2: DVD，
-- MPEG-4:
+- MPEG-1: 应用在 VCD 的制作和一些视频片段下载的网络应用上。(记录软件自动将 MPEG1 转换为 DAT 格式)
+- MPEG-2: 应用在 DVD 的制作，一些 HDTV(高清晰电视广播)和一些高要求视频编辑、处理上。
+- MPEG-4: 
