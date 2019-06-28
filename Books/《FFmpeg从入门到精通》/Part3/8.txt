@@ -1,0 +1,7 @@
+Demuxer flv [FLV (Flash Video)]:
+    Common extensions: flv.
+flvdec AVOptions:
+  -flv_metadata      <boolean>    .D.V..... Allocate streams according to the onMetaData array (default false)
+  -flv_full_metadata <boolean>    .D.V..... Dump full metadata of the onMetadata (default false)
+  -flv_ignore_prevtag <boolean>   .D.V..... Ignore the Size of previous tag (default false)
+  -missing_streams   <int>        .D.V..XR.  (from 0 to 255) (default 0)

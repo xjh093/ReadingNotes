@@ -1,0 +1,12 @@
+Muxer flv [FLV (Flash Video)]:
+    Common extensions: flv.
+    Mime type: video/x-flv.
+    Default video codec: flv1.
+    Default audio codec: mp3.
+flv muxer AVOptions:
+  -flvflags     <flags>      E........ FLV muxer flags (default 0)
+  aac_seq_header_detect      E........ Put AAC sequence header based on stream data
+  no_sequence_end            E........ disable sequence end for FLV
+  no_metadata                E........ disable metadata for FLV
+  no_duration_filesize       E........ disable duration and filesize zero value metadata for FLV
+  add_keyframe_index         E........ Add keyframe index metadata

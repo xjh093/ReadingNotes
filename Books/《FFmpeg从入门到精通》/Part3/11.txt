@@ -1,0 +1,13 @@
+Filter colorkey
+  Turns a certain color into transparency. Operates on RGB colors.
+    slice threading supported
+    Inputs:
+       #0: default (video)
+    Outputs:
+       #0: default (video)
+colorkey AVOptions:
+  color             <color>      ..FV..... set the colorkey key color (default "black")
+  similarity        <float>      ..FV..... set the colorkey similarity value (from 0.01 to 1) (default 0.01)
+  blend             <float>      ..FV..... set the colorkey key blend value (from 0 to 1) (default 0)
+
+This filter has support for timeline through the 'enable' option.

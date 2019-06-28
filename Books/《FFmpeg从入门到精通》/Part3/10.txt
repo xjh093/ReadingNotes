@@ -1,0 +1,7 @@
+Decoder h264 [H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10]:
+    General capabilities: dr1 delay threads 
+    Threading capabilities: frame and slice
+    Supported hardware devices: videotoolbox 
+H264 Decoder AVOptions:
+  -enable_er         <boolean>    .D.V..... Enable error resilience on damaged frames (unsafe) (default auto)
+  -x264_build        <int>        .D.V..... Assume this x264 version if no x264 version found in any SEI (from -1 to INT_MAX) (default -1)
