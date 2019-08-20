@@ -113,7 +113,22 @@ ffmpeg AVCodecContext 主要参数帮助
 
 - threads - 整数 - 设置编解码工作的线程数
 
-17.
+17.ffmpeg 工具的主要用途为编码、解码、转码以及媒体格式转换，ffmpeg 常用于进行转码操作
+
+如果转码操作涉及封装的改变，则可以通过设置 AVCodec 与 AVFormat 的操作参数进行封装与编码的改变
+
+例子：
+
+`ffmpeg -i ~/Movies/input1.rmvb -vcodec mpeg4 -b:v 200k -r 15 -an output.mp4`
+
+- 转封装格式从 RMVB 格式转换为 MP4 格式
+- 视频编码从 RV40 转换为 MPEG4 格式
+- 视频码率从原来的 377kbit/s 转换为 200kbit/s
+- 视频帧率从原来的 23.98 fps 转换为 15fps
+- 转码后的文件中不包括音频(-an参数)
+
+18.
+
 
 
 
