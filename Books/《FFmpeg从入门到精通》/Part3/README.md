@@ -44,6 +44,8 @@
 
 15.ffmpeg 的封装转换
 
+包含在 AVFormat 模块中，通过 libavformat 库进行 Mux 和 Demux 操作。
+
 16.
 
 
