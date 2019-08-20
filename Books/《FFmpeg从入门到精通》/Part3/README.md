@@ -46,6 +46,31 @@
 
 包含在 AVFormat 模块中，通过 libavformat 库进行 Mux 和 Demux 操作。
 
+ffmpeg AVFormatContext 主要参数帮助
+
+- avioflags - 标记 - format的缓冲设置，默认是0，就是有缓冲
+    - direct - 无缓冲状态
+    
+- probesize - 整数 - 在进行媒体数据处理前获得文件内容的大小，可用在预计取文件头时提高速度，也可以设置足够大的值来读取到足够多的音视频数据信息
+
+- fflags - 标记 - 
+    - flush_packets - 立即将 packets 数据刷新写入文件中
+    - genpts - 输出时按照正常规则产生 pts
+    - nofillin - 不填写可以精确计算缺失的值
+    - igndts - 忽略 dts
+    - discardcorrupt - 丢弃损坏的帧
+    - sortdts - 尝试以 dts 的顺序为准输出
+    - keepside - 不合并数据
+    - fastseek - 快速 seek (定位)操作，但是不够精确
+    - latm - 设置 RTP MP4_LATM 生效
+    - nobuffer - 直接读取或写出，不存入 buffer, 用于在直播采集时降低延迟
+    - bitexact - 不写入随机或不稳定的数据
+- seek2any - 整数 - 支持随意位置 seek, 这个 seek 不以 keyframe 为参考
+- analyzeduration - 整数 - 指定解析媒体所需要花销的时间，这里设置的值越高，解析越准确，如果在直播中为了降低延迟，这个值可以高雷得低一些
+- codec_whitelist - 列表 - 设置可以解析的 codec 的白名单
+- format_whitelist - 列表 - 设置可以解析的 format 的白名单
+- output_ts_offset - 整数 - 设置输出文件的起始时间
+
 16.
 
 
