@@ -127,7 +127,9 @@ ffmpeg AVCodecContext 主要参数帮助
 - 视频帧率从原来的 23.98 fps 转换为 15fps
 - 转码后的文件中不包括音频(-an参数)
 
-18.
+18.`ffprobe --help` 查看 ffprobe 的参数 -> [12.txt]()
+
+
 
 
 
