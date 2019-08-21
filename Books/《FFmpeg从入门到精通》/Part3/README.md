@@ -127,7 +127,86 @@ ffmpeg AVCodecContext 主要参数帮助
 - 视频帧率从原来的 23.98 fps 转换为 15fps
 - 转码后的文件中不包括音频(-an参数)
 
-18.`ffprobe --help` 查看 ffprobe 的参数 -> [12.txt]()
+18.`ffprobe --help` 查看 ffprobe 的参数 -> [12.txt](https://github.com/xjh093/ReadingNotes/blob/master/Books/《FFmpeg从入门到精通》/Part3/12.txt)
+
+19.使用 `ffprobe -show_packets input.flv` 查看多媒体数据包信息。
+
+相关信息使用标签 PACKET 括起来
+
+例子：
+```
+[PACKET]
+codec_type=video
+stream_index=0
+pts=0
+pts_time=0.000000
+dts=0
+dts_time=0.000000
+duration=1024
+duration_time=0.066667
+size=35377
+pos=336
+flags=K_
+[/PACKET]
+```
+
+packet 字段说明：
+
+| 字段 | 含义 |
+| --- | --- |
+| codec_type    | 多媒体类型，如视频包，音频包等
+| stream_index  | 多媒体的 stream 索引
+| pts           | 多媒体的显示时间值
+| pts_time      | 根据不同格式计算过后的多媒体的显示时间
+| dts           | 多媒体解码时间值
+| dts_time      | 根据不同格式计算过后的多媒体的解码时间
+| duration      | 多媒体占用的时间值
+| duration_time | 根据不同格式计算过后的多媒体包所占的时间值
+| size          | 多媒体包的大小
+| pos           | 多媒体包所在的文件偏移位置
+| flags         | 多媒体包标志，如关键包与非关键包的标记
+
+20.通过 `ffprobe -show_data -show_packets input.flv` 组合参数来查看包中的具体数据
+
+21.通过 `ffprobe -show_format output.mp4` 查看多媒体的封装格式。
+
+相关信息使用标签 FORMAT 括起来
+
+例子：
+```
+[FORMAT]
+filename=output.mp4
+nb_streams=2
+nb_programs=0
+format_name=mov,mp4,m4a,3gp,3g2,mj2
+format_long_name=QuickTime / MOV
+start_time=0.000000
+duration=14.763000
+size=1774234
+bit_rate=961449
+probe_score=100
+TAG:major_brand=isom
+TAG:minor_version=512
+TAG:compatible_brands=isomiso2avc1mp41
+TAG:encoder=Lavf57.82.100
+[/FORMAT]
+```
+
+format 字段说明：
+
+| 字段 | 含义 |
+| --- | --- |
+| filename         | 文件名
+| nb_streams       | 媒体中包含的流的个数
+| nb_programs      | 节目数
+| format_name      | 使用的封装模块的名称
+| format_long_name | 封装的完整名称
+| start_time       | 媒体文件的起始时间
+| duration         | 媒体文件的总时间长度
+| size             | 媒体文件大小
+| bit_rate         | 媒体文件码率
+
+22.
 
 
 
