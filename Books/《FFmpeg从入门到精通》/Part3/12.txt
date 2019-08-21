@@ -1,0 +1,1953 @@
+Simple multimedia streams analyzer
+usage: ffprobe [OPTIONS] [INPUT_FILE]
+
+Main options:
+-L                  show license
+-h topic            show help
+-? topic            show help
+-help topic         show help
+--help topic        show help
+-version            show version
+-buildconf          show build configuration
+-formats            show available formats
+-muxers             show available muxers
+-demuxers           show available demuxers
+-devices            show available devices
+-codecs             show available codecs
+-decoders           show available decoders
+-encoders           show available encoders
+-bsfs               show available bit stream filters
+-protocols          show available protocols
+-filters            show available filters
+-pix_fmts           show available pixel formats
+-layouts            show standard channel layouts
+-sample_fmts        show available audio sample formats
+-colors             show available color names
+-loglevel loglevel  set logging level
+-v loglevel         set logging level
+-report             generate a report
+-max_alloc bytes    set maximum size of a single allocated block
+-cpuflags flags     force specific cpu flags
+-hide_banner hide_banner  do not show program banner
+-sources device     list sources of the input device
+-sinks device       list sinks of the output device
+-f format           force format
+-unit               show unit of the displayed values
+-prefix             use SI prefixes for the displayed values
+-byte_binary_prefix  use binary prefixes for byte units
+-sexagesimal        use sexagesimal format HOURS:MM:SS.MICROSECONDS for time units
+-pretty             prettify the format of displayed values, make it more human readable
+-print_format format  set the output printing format (available formats are: default, compact, csv, flat, ini, json, xml)
+-of format          alias for -print_format
+-select_streams stream_specifier  select the specified streams
+-sections           print sections structure and section information, and exit
+-show_data          show packets data
+-show_data_hash     show packets data hash
+-show_error         show probing error
+-show_format        show format/container info
+-show_frames        show frames info
+-show_format_entry entry  show a particular entry from the format/container info
+-show_entries entry_list  show a set of specified entries
+-show_log           show log
+-show_packets       show packets info
+-show_programs      show programs info
+-show_streams       show streams info
+-show_chapters      show chapters info
+-count_frames       count the number of frames per stream
+-count_packets      count the number of packets per stream
+-show_program_version  show ffprobe version
+-show_library_versions  show library versions
+-show_versions      show program and library versions
+-show_pixel_formats  show pixel format descriptions
+-show_private_data  show private data
+-private            same as show_private_data
+-bitexact           force bitexact output
+-read_intervals read_intervals  set read intervals
+-default            generic catch all option
+-i input_file       read specified file
+-find_stream_info   read and decode the streams to fill missing information with heuristics
+
+
+AVFormatContext AVOptions:
+  -avioflags         <flags>      ED....... (default 0)
+     direct                       ED....... reduce buffering
+  -probesize         <int64>      .D....... set probing size (from 32 to I64_MAX) (default 5e+06)
+  -formatprobesize   <int>        .D....... number of bytes to probe file format (from 0 to 2.14748e+09) (default 1.04858e+06)
+  -fflags            <flags>      ED....... (default autobsf)
+     ignidx                       .D....... ignore index
+     genpts                       .D....... generate pts
+     nofillin                     .D....... do not fill in missing values that can be exactly calculated
+     noparse                      .D....... disable AVParsers, this needs nofillin too
+     igndts                       .D....... ignore dts
+     discardcorrupt               .D....... discard corrupted frames
+     sortdts                      .D....... try to interleave outputted packets by dts
+     keepside                     .D....... deprecated, does nothing
+     fastseek                     .D....... fast but inaccurate seeks
+     nobuffer                     .D....... reduce the latency introduced by optional buffering
+  -seek2any          <boolean>    .D....... allow seeking to non-keyframes on demuxer level when supported (default false)
+  -analyzeduration   <int64>      .D....... specify how many microseconds are analyzed to probe the input (from 0 to I64_MAX) (default 0)
+  -cryptokey         <binary>     .D....... decryption key
+  -indexmem          <int>        .D....... max memory used for timestamp index (per stream) (from 0 to INT_MAX) (default 1.04858e+06)
+  -rtbufsize         <int>        .D....... max memory used for buffering real-time frames (from 0 to INT_MAX) (default 3.04128e+06)
+  -fdebug            <flags>      ED....... print specific debug info (default 0)
+     ts                           ED.......
+  -max_delay         <int>        ED....... maximum muxing or demuxing delay in microseconds (from -1 to INT_MAX) (default -1)
+  -fpsprobesize      <int>        .D....... number of frames used to probe fps (from -1 to 2.14748e+09) (default -1)
+  -f_err_detect      <flags>      .D....... set error detection flags (deprecated; use err_detect, save via avconv) (default crccheck)
+     crccheck                     .D....... verify embedded CRCs
+     bitstream                    .D....... detect bitstream specification deviations
+     buffer                       .D....... detect improper bitstream length
+     explode                      .D....... abort decoding on minor error detection
+     ignore_err                   .D....... ignore errors
+     careful                      .D....... consider things that violate the spec, are fast to check and have not been seen in the wild as errors
+     compliant                    .D....... consider all spec non compliancies as errors
+     aggressive                   .D....... consider things that a sane encoder shouldn't do as an error
+  -err_detect        <flags>      .D....... set error detection flags (default crccheck)
+     crccheck                     .D....... verify embedded CRCs
+     bitstream                    .D....... detect bitstream specification deviations
+     buffer                       .D....... detect improper bitstream length
+     explode                      .D....... abort decoding on minor error detection
+     ignore_err                   .D....... ignore errors
+     careful                      .D....... consider things that violate the spec, are fast to check and have not been seen in the wild as errors
+     compliant                    .D....... consider all spec non compliancies as errors
+     aggressive                   .D....... consider things that a sane encoder shouldn't do as an error
+  -use_wallclock_as_timestamps <boolean>    .D....... use wallclock as timestamps (default false)
+  -skip_initial_bytes <int64>      .D....... set number of bytes to skip before reading header and frames (from 0 to I64_MAX) (default 0)
+  -correct_ts_overflow <boolean>    .D....... correct single timestamp overflows (default true)
+  -f_strict          <int>        ED....... how strictly to follow the standards (deprecated; use strict, save via avconv) (from INT_MIN to INT_MAX) (default normal)
+     very                         ED....... strictly conform to a older more strict version of the spec or reference software
+     strict                       ED....... strictly conform to all the things in the spec no matter what the consequences
+     normal                       ED.......
+     unofficial                   ED....... allow unofficial extensions
+     experimental                 ED....... allow non-standardized experimental variants
+  -strict            <int>        ED....... how strictly to follow the standards (from INT_MIN to INT_MAX) (default normal)
+     very                         ED....... strictly conform to a older more strict version of the spec or reference software
+     strict                       ED....... strictly conform to all the things in the spec no matter what the consequences
+     normal                       ED.......
+     unofficial                   ED....... allow unofficial extensions
+     experimental                 ED....... allow non-standardized experimental variants
+  -max_ts_probe      <int>        .D....... maximum number of packets to read while waiting for the first timestamp (from 0 to INT_MAX) (default 50)
+  -dump_separator    <string>     ED....... set information dump field separator (default ", ")
+  -codec_whitelist   <string>     .D....... List of decoders that are allowed to be used
+  -format_whitelist  <string>     .D....... List of demuxers that are allowed to be used
+  -protocol_whitelist <string>     .D....... List of protocols that are allowed to be used
+  -protocol_blacklist <string>     .D....... List of protocols that are not allowed to be used
+  -max_streams       <int>        .D....... maximum number of streams (from 0 to INT_MAX) (default 1000)
+  -skip_estimate_duration_from_pts <boolean>    .D....... skip duration calculation in estimate_timings_from_pts (default false)
+
+AVIOContext AVOptions:
+  -protocol_whitelist <string>     .D....... List of protocols that are allowed to be used
+
+URLContext AVOptions:
+  -protocol_whitelist <string>     .D....... List of protocols that are allowed to be used
+  -protocol_blacklist <string>     .D....... List of protocols that are not allowed to be used
+  -rw_timeout        <int64>      ED....... Timeout for IO operations (in microseconds) (from 0 to I64_MAX) (default 0)
+
+Async AVOptions:
+
+bluray AVOptions:
+  -playlist          <int>        .D.......  (from -1 to 99999) (default -1)
+  -angle             <int>        .D.......  (from 0 to 254) (default 0)
+  -chapter           <int>        .D.......  (from 1 to 65534) (default 1)
+
+Cache AVOptions:
+  -read_ahead_limit  <int>        .D....... Amount in bytes that may be read ahead when seeking isn't supported, -1 for unlimited (from -1 to INT_MAX) (default 65536)
+
+crypto AVOptions:
+  -key               <binary>     ED....... AES encryption/decryption key
+  -iv                <binary>     ED....... AES encryption/decryption initialization vector
+  -decryption_key    <binary>     .D....... AES decryption key
+  -decryption_iv     <binary>     .D....... AES decryption initialization vector
+
+file AVOptions:
+  -follow            <int>        .D....... Follow a file as it is being written (from 0 to 1) (default 0)
+
+ftp AVOptions:
+  -timeout           <int>        ED....... set timeout of socket I/O operations (from -1 to INT_MAX) (default -1)
+  -ftp-anonymous-password <string>     ED....... password for anonymous login. E-mail address should be used.
+
+http AVOptions:
+  -seekable          <boolean>    .D....... control seekability of connection (default auto)
+  -http_proxy        <string>     ED....... set HTTP proxy to tunnel through
+  -headers           <string>     ED....... set custom HTTP headers, can override built in default headers
+  -content_type      <string>     ED....... set a specific content type for the POST messages
+  -user_agent        <string>     .D....... override User-Agent header (default "Lavf/58.20.100")
+  -referer           <string>     .D....... override referer header
+  -user-agent        <string>     .D....... use the "user_agent" option instead (default "Lavf/58.20.100")
+  -multiple_requests <boolean>    ED....... use persistent connections (default false)
+  -post_data         <binary>     ED....... set custom HTTP post data
+  -cookies           <string>     .D....... set cookies to be sent in applicable future requests, use newline delimited Set-Cookie HTTP field value syntax
+  -icy               <boolean>    .D....... request ICY metadata (default true)
+  -auth_type         <int>        ED....... HTTP authentication type (from 0 to 1) (default none)
+     none                         ED....... No auth method set, autodetect
+     basic                        ED....... HTTP basic authentication
+  -location          <string>     ED....... The actual location of the data received
+  -offset            <int64>      .D....... initial byte offset (from 0 to I64_MAX) (default 0)
+  -end_offset        <int64>      .D....... try to limit the request to bytes preceding this offset (from 0 to I64_MAX) (default 0)
+  -method            <string>     ED....... Override the HTTP method or set the expected HTTP method from a client
+  -reconnect         <boolean>    .D....... auto reconnect after disconnect before EOF (default false)
+  -reconnect_at_eof  <boolean>    .D....... auto reconnect at EOF (default false)
+  -reconnect_streamed <boolean>    .D....... auto reconnect streamed / non seekable streams (default false)
+  -reconnect_delay_max <int>        .D....... max reconnect delay in seconds after which to give up (from 0 to 4294) (default 120)
+  -listen            <int>        ED....... listen on HTTP (from 0 to 2) (default 0)
+
+https AVOptions:
+  -seekable          <boolean>    .D....... control seekability of connection (default auto)
+  -http_proxy        <string>     ED....... set HTTP proxy to tunnel through
+  -headers           <string>     ED....... set custom HTTP headers, can override built in default headers
+  -content_type      <string>     ED....... set a specific content type for the POST messages
+  -user_agent        <string>     .D....... override User-Agent header (default "Lavf/58.20.100")
+  -referer           <string>     .D....... override referer header
+  -user-agent        <string>     .D....... use the "user_agent" option instead (default "Lavf/58.20.100")
+  -multiple_requests <boolean>    ED....... use persistent connections (default false)
+  -post_data         <binary>     ED....... set custom HTTP post data
+  -cookies           <string>     .D....... set cookies to be sent in applicable future requests, use newline delimited Set-Cookie HTTP field value syntax
+  -icy               <boolean>    .D....... request ICY metadata (default true)
+  -auth_type         <int>        ED....... HTTP authentication type (from 0 to 1) (default none)
+     none                         ED....... No auth method set, autodetect
+     basic                        ED....... HTTP basic authentication
+  -location          <string>     ED....... The actual location of the data received
+  -offset            <int64>      .D....... initial byte offset (from 0 to I64_MAX) (default 0)
+  -end_offset        <int64>      .D....... try to limit the request to bytes preceding this offset (from 0 to I64_MAX) (default 0)
+  -method            <string>     ED....... Override the HTTP method or set the expected HTTP method from a client
+  -reconnect         <boolean>    .D....... auto reconnect after disconnect before EOF (default false)
+  -reconnect_at_eof  <boolean>    .D....... auto reconnect at EOF (default false)
+  -reconnect_streamed <boolean>    .D....... auto reconnect streamed / non seekable streams (default false)
+  -reconnect_delay_max <int>        .D....... max reconnect delay in seconds after which to give up (from 0 to 4294) (default 120)
+  -listen            <int>        ED....... listen on HTTP (from 0 to 2) (default 0)
+
+icecast AVOptions:
+
+pipe AVOptions:
+
+prompeg AVOptions:
+
+rtp AVOptions:
+  -ttl               <int>        ED....... Time to live (in milliseconds, multicast only) (from -1 to INT_MAX) (default -1)
+  -buffer_size       <int>        ED....... Send/Receive buffer size (in bytes) (from -1 to INT_MAX) (default -1)
+  -rtcp_port         <int>        ED....... Custom rtcp port (from -1 to INT_MAX) (default -1)
+  -local_rtpport     <int>        ED....... Local rtp port (from -1 to INT_MAX) (default -1)
+  -local_rtcpport    <int>        ED....... Local rtcp port (from -1 to INT_MAX) (default -1)
+  -connect           <boolean>    ED....... Connect socket (default false)
+  -write_to_source   <boolean>    ED....... Send packets to the source address of the latest received packet (default false)
+  -pkt_size          <int>        ED....... Maximum packet size (from -1 to INT_MAX) (default -1)
+  -dscp              <int>        ED....... DSCP class (from -1 to INT_MAX) (default -1)
+  -sources           <string>     ED....... Source list
+  -block             <string>     ED....... Block list
+
+srtp AVOptions:
+  -srtp_in_suite     <string>     .D....... 
+  -srtp_in_params    <string>     .D....... 
+
+subfile AVOptions:
+  -start             <int64>      .D....... start offset (from 0 to I64_MAX) (default 0)
+  -end               <int64>      .D....... end offset (from 0 to I64_MAX) (default 0)
+
+tee AVOptions:
+
+tcp AVOptions:
+  -listen            <int>        ED....... Listen for incoming connections (from 0 to 2) (default 0)
+  -timeout           <int>        ED....... set timeout (in microseconds) of socket I/O operations (from -1 to INT_MAX) (default -1)
+  -listen_timeout    <int>        ED....... Connection awaiting timeout (in milliseconds) (from -1 to INT_MAX) (default -1)
+  -send_buffer_size  <int>        ED....... Socket send buffer size (in bytes) (from -1 to INT_MAX) (default -1)
+  -recv_buffer_size  <int>        ED....... Socket receive buffer size (in bytes) (from -1 to INT_MAX) (default -1)
+  -tcp_nodelay       <boolean>    ED....... Use TCP_NODELAY to disable nagle's algorithm (default false)
+  -tcp_mss           <int>        ED....... Maximum segment size for outgoing TCP packets (from -1 to INT_MAX) (default -1)
+
+tls AVOptions:
+  -ca_file           <string>     ED....... Certificate Authority database file
+  -cafile            <string>     ED....... Certificate Authority database file
+  -tls_verify        <int>        ED....... Verify the peer certificate (from 0 to 1) (default 0)
+  -cert_file         <string>     ED....... Certificate file
+  -key_file          <string>     ED....... Private key file
+  -listen            <int>        ED....... Listen for incoming connections (from 0 to 1) (default 0)
+  -verifyhost        <string>     ED....... Verify against a specific hostname
+
+udp AVOptions:
+  -buffer_size       <int>        ED....... System data size (in bytes) (from -1 to INT_MAX) (default -1)
+  -localport         <int>        ED....... Local port (from -1 to INT_MAX) (default -1)
+  -local_port        <int>        ED....... Local port (from -1 to INT_MAX) (default -1)
+  -localaddr         <string>     ED....... Local address
+  -udplite_coverage  <int>        ED....... choose UDPLite head size which should be validated by checksum (from 0 to INT_MAX) (default 0)
+  -pkt_size          <int>        ED....... Maximum UDP packet size (from -1 to INT_MAX) (default 1472)
+  -reuse             <boolean>    ED....... explicitly allow reusing UDP sockets (default auto)
+  -reuse_socket      <boolean>    ED....... explicitly allow reusing UDP sockets (default auto)
+  -connect           <boolean>    ED....... set if connect() should be called on socket (default false)
+  -fifo_size         <int>        .D....... set the UDP receiving circular buffer size, expressed as a number of packets with size of 188 bytes (from 0 to INT_MAX) (default 28672)
+  -overrun_nonfatal  <boolean>    .D....... survive in case of UDP receiving circular buffer overrun (default false)
+  -timeout           <int>        .D....... set raise error timeout (only in read mode) (from 0 to INT_MAX) (default 0)
+  -sources           <string>     ED....... Source list
+  -block             <string>     ED....... Block list
+
+udplite AVOptions:
+  -buffer_size       <int>        ED....... System data size (in bytes) (from -1 to INT_MAX) (default -1)
+  -localport         <int>        ED....... Local port (from -1 to INT_MAX) (default -1)
+  -local_port        <int>        ED....... Local port (from -1 to INT_MAX) (default -1)
+  -localaddr         <string>     ED....... Local address
+  -udplite_coverage  <int>        ED....... choose UDPLite head size which should be validated by checksum (from 0 to INT_MAX) (default 0)
+  -pkt_size          <int>        ED....... Maximum UDP packet size (from -1 to INT_MAX) (default 1472)
+  -reuse             <boolean>    ED....... explicitly allow reusing UDP sockets (default auto)
+  -reuse_socket      <boolean>    ED....... explicitly allow reusing UDP sockets (default auto)
+  -connect           <boolean>    ED....... set if connect() should be called on socket (default false)
+  -fifo_size         <int>        .D....... set the UDP receiving circular buffer size, expressed as a number of packets with size of 188 bytes (from 0 to INT_MAX) (default 28672)
+  -overrun_nonfatal  <boolean>    .D....... survive in case of UDP receiving circular buffer overrun (default false)
+  -timeout           <int>        .D....... set raise error timeout (only in read mode) (from 0 to INT_MAX) (default 0)
+  -sources           <string>     ED....... Source list
+  -block             <string>     ED....... Block list
+
+unix AVOptions:
+  -listen            <boolean>    ED....... Open socket for listening (default false)
+  -timeout           <int>        ED....... Timeout in ms (from -1 to INT_MAX) (default -1)
+  -type              <int>        ED....... Socket type (from INT_MIN to INT_MAX) (default stream)
+     stream                       ED....... Stream (reliable stream-oriented)
+     datagram                     ED....... Datagram (unreliable packet-oriented)
+     seqpacket                    ED....... Seqpacket (reliable packet-oriented
+
+librtmp protocol AVOptions:
+  -rtmp_app          <string>     ED....... Name of application to connect to on the RTMP server
+  -rtmp_buffer       <string>     ED....... Set buffer time in milliseconds. The default is 3000. (default "3000")
+  -rtmp_conn         <string>     ED....... Append arbitrary AMF data to the Connect message
+  -rtmp_flashver     <string>     ED....... Version of the Flash plugin used to run the SWF player.
+  -rtmp_live         <int>        .D....... Specify that the media is a live stream. (from INT_MIN to INT_MAX) (default recorded)
+     any                          .D....... both
+     live                         .D....... live stream
+     recorded                     .D....... recorded stream
+  -rtmp_pageurl      <string>     .D....... URL of the web page in which the media was embedded. By default no value will be sent.
+  -rtmp_playpath     <string>     ED....... Stream identifier to play or to publish
+  -rtmp_subscribe    <string>     .D....... Name of live stream to subscribe to. Defaults to rtmp_playpath.
+  -rtmp_swfurl       <string>     ED....... URL of the SWF player. By default no value will be sent
+  -rtmp_swfverify    <string>     .D....... URL to player swf file, compute hash/size automatically. (unimplemented)
+  -rtmp_tcurl        <string>     ED....... URL of the target stream. Defaults to proto://host[:port]/app.
+  -rtmp_buffer_size  <int>        ED....... set buffer size in bytes (from -1 to INT_MAX) (default -1)
+
+librtmpe protocol AVOptions:
+  -rtmp_app          <string>     ED....... Name of application to connect to on the RTMP server
+  -rtmp_buffer       <string>     ED....... Set buffer time in milliseconds. The default is 3000. (default "3000")
+  -rtmp_conn         <string>     ED....... Append arbitrary AMF data to the Connect message
+  -rtmp_flashver     <string>     ED....... Version of the Flash plugin used to run the SWF player.
+  -rtmp_live         <int>        .D....... Specify that the media is a live stream. (from INT_MIN to INT_MAX) (default recorded)
+     any                          .D....... both
+     live                         .D....... live stream
+     recorded                     .D....... recorded stream
+  -rtmp_pageurl      <string>     .D....... URL of the web page in which the media was embedded. By default no value will be sent.
+  -rtmp_playpath     <string>     ED....... Stream identifier to play or to publish
+  -rtmp_subscribe    <string>     .D....... Name of live stream to subscribe to. Defaults to rtmp_playpath.
+  -rtmp_swfurl       <string>     ED....... URL of the SWF player. By default no value will be sent
+  -rtmp_swfverify    <string>     .D....... URL to player swf file, compute hash/size automatically. (unimplemented)
+  -rtmp_tcurl        <string>     ED....... URL of the target stream. Defaults to proto://host[:port]/app.
+  -rtmp_buffer_size  <int>        ED....... set buffer size in bytes (from -1 to INT_MAX) (default -1)
+
+librtmps protocol AVOptions:
+  -rtmp_app          <string>     ED....... Name of application to connect to on the RTMP server
+  -rtmp_buffer       <string>     ED....... Set buffer time in milliseconds. The default is 3000. (default "3000")
+  -rtmp_conn         <string>     ED....... Append arbitrary AMF data to the Connect message
+  -rtmp_flashver     <string>     ED....... Version of the Flash plugin used to run the SWF player.
+  -rtmp_live         <int>        .D....... Specify that the media is a live stream. (from INT_MIN to INT_MAX) (default recorded)
+     any                          .D....... both
+     live                         .D....... live stream
+     recorded                     .D....... recorded stream
+  -rtmp_pageurl      <string>     .D....... URL of the web page in which the media was embedded. By default no value will be sent.
+  -rtmp_playpath     <string>     ED....... Stream identifier to play or to publish
+  -rtmp_subscribe    <string>     .D....... Name of live stream to subscribe to. Defaults to rtmp_playpath.
+  -rtmp_swfurl       <string>     ED....... URL of the SWF player. By default no value will be sent
+  -rtmp_swfverify    <string>     .D....... URL to player swf file, compute hash/size automatically. (unimplemented)
+  -rtmp_tcurl        <string>     ED....... URL of the target stream. Defaults to proto://host[:port]/app.
+  -rtmp_buffer_size  <int>        ED....... set buffer size in bytes (from -1 to INT_MAX) (default -1)
+
+librtmpt protocol AVOptions:
+  -rtmp_app          <string>     ED....... Name of application to connect to on the RTMP server
+  -rtmp_buffer       <string>     ED....... Set buffer time in milliseconds. The default is 3000. (default "3000")
+  -rtmp_conn         <string>     ED....... Append arbitrary AMF data to the Connect message
+  -rtmp_flashver     <string>     ED....... Version of the Flash plugin used to run the SWF player.
+  -rtmp_live         <int>        .D....... Specify that the media is a live stream. (from INT_MIN to INT_MAX) (default recorded)
+     any                          .D....... both
+     live                         .D....... live stream
+     recorded                     .D....... recorded stream
+  -rtmp_pageurl      <string>     .D....... URL of the web page in which the media was embedded. By default no value will be sent.
+  -rtmp_playpath     <string>     ED....... Stream identifier to play or to publish
+  -rtmp_subscribe    <string>     .D....... Name of live stream to subscribe to. Defaults to rtmp_playpath.
+  -rtmp_swfurl       <string>     ED....... URL of the SWF player. By default no value will be sent
+  -rtmp_swfverify    <string>     .D....... URL to player swf file, compute hash/size automatically. (unimplemented)
+  -rtmp_tcurl        <string>     ED....... URL of the target stream. Defaults to proto://host[:port]/app.
+  -rtmp_buffer_size  <int>        ED....... set buffer size in bytes (from -1 to INT_MAX) (default -1)
+
+librtmpte protocol AVOptions:
+  -rtmp_app          <string>     ED....... Name of application to connect to on the RTMP server
+  -rtmp_buffer       <string>     ED....... Set buffer time in milliseconds. The default is 3000. (default "3000")
+  -rtmp_conn         <string>     ED....... Append arbitrary AMF data to the Connect message
+  -rtmp_flashver     <string>     ED....... Version of the Flash plugin used to run the SWF player.
+  -rtmp_live         <int>        .D....... Specify that the media is a live stream. (from INT_MIN to INT_MAX) (default recorded)
+     any                          .D....... both
+     live                         .D....... live stream
+     recorded                     .D....... recorded stream
+  -rtmp_pageurl      <string>     .D....... URL of the web page in which the media was embedded. By default no value will be sent.
+  -rtmp_playpath     <string>     ED....... Stream identifier to play or to publish
+  -rtmp_subscribe    <string>     .D....... Name of live stream to subscribe to. Defaults to rtmp_playpath.
+  -rtmp_swfurl       <string>     ED....... URL of the SWF player. By default no value will be sent
+  -rtmp_swfverify    <string>     .D....... URL to player swf file, compute hash/size automatically. (unimplemented)
+  -rtmp_tcurl        <string>     ED....... URL of the target stream. Defaults to proto://host[:port]/app.
+  -rtmp_buffer_size  <int>        ED....... set buffer size in bytes (from -1 to INT_MAX) (default -1)
+
+aa AVOptions:
+  -aa_fixed_key      <binary>     .D....... Fixed key used for handling Audible AA files
+
+Artworx Data Format demuxer AVOptions:
+  -linespeed         <int>        .D....... set simulated line speed (bytes per second) (from 1 to INT_MAX) (default 6000)
+  -video_size        <image_size> .D....... set video size, such as 640x480 or hd720.
+  -framerate         <video_rate> .D....... set framerate (frames per second) (default "25")
+
+APNG demuxer AVOptions:
+  -ignore_loop       <boolean>    .D....... ignore loop setting (default true)
+  -max_fps           <int>        .D....... maximum framerate (0 is no limit) (from 0 to INT_MAX) (default 0)
+  -default_fps       <int>        .D....... default framerate (0 is as fast as possible) (from 0 to INT_MAX) (default 15)
+
+aptx demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 48000)
+
+aptx hd demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 48000)
+
+aqtdec AVOptions:
+  -subfps            <rational>   .D...S... set the movie frame rate (from 0 to INT_MAX) (default 25/1)
+
+asf demuxer AVOptions:
+  -no_resync_search  <boolean>    .D....... Don't try to resynchronize by looking for a certain optional start code (default false)
+  -export_xmp        <boolean>    .D....... Export full XMP metadata (default false)
+
+avi AVOptions:
+  -use_odml          <boolean>    .D....... use odml index (default true)
+
+avs2 demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+Binary text demuxer AVOptions:
+  -linespeed         <int>        .D....... set simulated line speed (bytes per second) (from 1 to INT_MAX) (default 6000)
+  -video_size        <image_size> .D....... set video size, such as 640x480 or hd720.
+  -framerate         <video_rate> .D....... set framerate (frames per second) (default "25")
+
+cavsvideo demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+CDXL demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 1 to INT_MAX) (default 11025)
+  -framerate         <string>     .D....... 
+
+codec2 demuxer AVOptions:
+  -frames_per_packet <int>        .D....... Number of frames to read at a time. Higher = faster decoding, lower granularity (from 1 to INT_MAX) (default 1)
+
+codec2raw demuxer AVOptions:
+  -mode              <int>        .D....... codec2 mode [mandatory] (from -1 to 8) (default -1)
+     3200                         .D....... 3200
+     2400                         .D....... 2400
+     1600                         .D....... 1600
+     1400                         .D....... 1400
+     1300                         .D....... 1300
+     1200                         .D....... 1200
+     700                          .D....... 700
+     700B                         .D....... 700B
+     700C                         .D....... 700C
+  -frames_per_packet <int>        .D....... Number of frames to read at a time. Higher = faster decoding, lower granularity (from 1 to INT_MAX) (default 1)
+
+concat demuxer AVOptions:
+  -safe              <boolean>    .D....... enable safe mode (default true)
+  -auto_convert      <boolean>    .D....... automatically convert bitstream format (default true)
+  -segment_time_metadata <boolean>    .D....... output file segment start time and duration as packet metadata (default false)
+
+dirac demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+dnxhd demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+dvbsub demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+dvbtxt demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+FITS demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the framerate (default "1")
+
+flvdec AVOptions:
+  -flv_metadata      <boolean>    .D.V..... Allocate streams according to the onMetaData array (default false)
+  -flv_full_metadata <boolean>    .D.V..... Dump full metadata of the onMetadata (default false)
+  -flv_ignore_prevtag <boolean>    .D.V..... Ignore the Size of previous tag (default false)
+  -missing_streams   <int>        .D.V..XR.  (from 0 to 255) (default 0)
+
+live_flvdec AVOptions:
+  -flv_metadata      <boolean>    .D.V..... Allocate streams according to the onMetaData array (default false)
+  -flv_full_metadata <boolean>    .D.V..... Dump full metadata of the onMetadata (default false)
+  -flv_ignore_prevtag <boolean>    .D.V..... Ignore the Size of previous tag (default false)
+  -missing_streams   <int>        .D.V..XR.  (from 0 to 255) (default 0)
+
+G.726 big-endian demuxer AVOptions:
+  -code_size         <int>        .D....... Bits per G.726 code (from 2 to 5) (default 4)
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 8000)
+
+G.726 little-endian demuxer AVOptions:
+  -code_size         <int>        .D....... Bits per G.726 code (from 2 to 5) (default 4)
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 8000)
+
+g729 demuxer AVOptions:
+  -bit_rate          <int>        .D.......  (from 0 to INT_MAX) (default 8000)
+
+GIF demuxer AVOptions:
+  -min_delay         <int>        .D....... minimum valid delay between frames (in hundredths of second) (from 0 to 6000) (default 2)
+  -max_gif_delay     <int>        .D....... maximum valid delay between frames (in hundredths of seconds) (from 0 to 65535) (default 65535)
+  -default_delay     <int>        .D....... default delay between frames (in hundredths of second) (from 0 to 6000) (default 10)
+  -ignore_loop       <boolean>    .D....... ignore loop setting (netscape extension) (default true)
+
+gsm demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 1 to 6.50753e+07) (default 8000)
+
+h261 demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+h263 demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+h264 demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+hevc demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+hls,applehttp AVOptions:
+  -live_start_index  <int>        .D....... segment index to start live streams at (negative values are from the end) (from INT_MIN to INT_MAX) (default -3)
+  -allowed_extensions <string>     .D....... List of file extensions that hls is allowed to access (default "3gp,aac,avi,flac,mkv,m3u8,m4a,m4s,m4v,mpg,mov,mp2,mp3,mp4,mpeg,mpegts,ogg,ogv,oga,ts,vob,wav")
+  -max_reload        <int>        .D....... Maximum number of times a insufficient list is attempted to be reloaded (from 0 to INT_MAX) (default 1000)
+  -http_persistent   <boolean>    .D....... Use persistent HTTP connections (default true)
+  -http_multiple     <boolean>    .D....... Use multiple HTTP connections for fetching segments (default auto)
+
+iCE Draw File demuxer AVOptions:
+  -linespeed         <int>        .D....... set simulated line speed (bytes per second) (from 1 to INT_MAX) (default 6000)
+  -video_size        <image_size> .D....... set video size, such as 640x480 or hd720.
+  -framerate         <video_rate> .D....... set framerate (frames per second) (default "25")
+
+image2 demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+image2pipe demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+alias_pix demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+brender_pix demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+ingenient demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+m4v demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+microdvddec AVOptions:
+  -subfps            <rational>   .D...S... set the movie frame rate fallback (from 0 to INT_MAX) (default 0/1)
+
+mjpeg demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+mjpeg_2000 demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+mov,mp4,m4a,3gp,3g2,mj2 AVOptions:
+  -use_absolute_path <boolean>    .D.V..... allow using absolute path when opening alias, this is a possible security issue (default false)
+  -seek_streams_individually <boolean>    .D.V..... Seek each stream individually to the to the closest point (default true)
+  -ignore_editlist   <boolean>    .D.V..... Ignore the edit list atom. (default false)
+  -advanced_editlist <boolean>    .D.V..... Modify the AVIndex according to the editlists. Use this option to decode in the order specified by the edits. (default true)
+  -ignore_chapters   <boolean>    .D.V.....  (default false)
+  -use_mfra_for      <int>        .D.V..... use mfra for fragment timestamps (from -1 to 2) (default auto)
+     auto                         .D.V..... auto
+     dts                          .D.V..... dts
+     pts                          .D.V..... pts
+  -export_all        <boolean>    .D.V..... Export unrecognized metadata entries (default false)
+  -export_xmp        <boolean>    .D.V..... Export full XMP metadata (default false)
+  -activation_bytes  <binary>     .D....... Secret bytes for Audible AAX files
+  -audible_fixed_key <binary>     .D....... Fixed key used for handling Audible AAX files
+  -decryption_key    <binary>     .D....... The media decryption key (hex)
+  -enable_drefs      <boolean>    .D.V..... Enable external track support. (default false)
+
+mp3 AVOptions:
+  -usetoc            <boolean>    .D....... use table of contents (default false)
+
+mpegts demuxer AVOptions:
+  -resync_size       <int>        .D....... set size limit for looking up a new synchronization (from 0 to INT_MAX) (default 65536)
+  -fix_teletext_pts  <boolean>    .D....... try to fix pts values of dvb teletext streams (default true)
+  -ts_packetsize     <int>        .D....XR. output option carrying the raw packet size (from 0 to 0) (default 0)
+  -scan_all_pmts     <boolean>    .D....... scan and combine all PMTs (default auto)
+  -skip_unknown_pmt  <boolean>    .D....... skip PMTs for programs not advertised in the PAT (default false)
+  -merge_pmt_versions <boolean>    .D....... re-use streams when PMT's version/pids change (default false)
+
+mpegtsraw demuxer AVOptions:
+  -resync_size       <int>        .D....... set size limit for looking up a new synchronization (from 0 to INT_MAX) (default 65536)
+  -compute_pcr       <boolean>    .D....... compute exact PCR for each transport stream packet (default false)
+  -ts_packetsize     <int>        .D....XR. output option carrying the raw packet size (from 0 to 0) (default 0)
+
+mpegvideo demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+MPJPEG demuxer AVOptions:
+  -strict_mime_boundary <boolean>    .D....... require MIME boundaries match (default false)
+
+mxf AVOptions:
+  -eia608_extract    <boolean>    .D....... extract eia 608 captions from s436m track (default false)
+
+alaw demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+mulaw demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+vidc demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+f64be demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+f64le demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+f32be demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+f32le demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+s32be demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+s32le demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+s24be demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+s24le demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+s16be demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+s16le demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+s8 demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+u32be demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+u32le demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+u24be demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+u24le demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+u16be demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+u16le demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+u8 demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 44100)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+rawvideo demuxer AVOptions:
+  -video_size        <image_size> .D....... set frame size
+  -pixel_format      <string>     .D....... set pixel format (default "yuv420p")
+  -framerate         <video_rate> .D....... set frame rate (default "25")
+
+RTP demuxer AVOptions:
+  -rtp_flags         <flags>      .D....... set RTP flags (default 0)
+     filter_src                   .D....... only receive packets from the negotiated peer IP
+  -reorder_queue_size <int>        .D....... set number of packets to buffer for handling of reordered packets (from -1 to INT_MAX) (default -1)
+  -buffer_size       <int>        ED....... Underlying protocol send/receive buffer size (from -1 to INT_MAX) (default -1)
+
+RTSP demuxer AVOptions:
+  -initial_pause     <boolean>    .D....... do not start playing the stream immediately (default false)
+  -rtsp_transport    <flags>      ED....... set RTSP transport protocols (default 0)
+     udp                          ED....... UDP
+     tcp                          ED....... TCP
+     udp_multicast                .D....... UDP multicast
+     http                         .D....... HTTP tunneling
+  -rtsp_flags        <flags>      .D....... set RTSP flags (default 0)
+     filter_src                   .D....... only receive packets from the negotiated peer IP
+     listen                       .D....... wait for incoming connections
+     prefer_tcp                   ED....... try RTP via TCP first, if available
+  -allowed_media_types <flags>      .D....... set media types to accept from the server (default video+audio+data+subtitle)
+     video                        .D....... Video
+     audio                        .D....... Audio
+     data                         .D....... Data
+     subtitle                     .D....... Subtitle
+  -min_port          <int>        ED....... set minimum local UDP port (from 0 to 65535) (default 5000)
+  -max_port          <int>        ED....... set maximum local UDP port (from 0 to 65535) (default 65000)
+  -listen_timeout    <int>        .D....... set maximum timeout (in seconds) to wait for incoming connections (-1 is infinite, imply flag listen) (from INT_MIN to INT_MAX) (default -1)
+  -timeout           <int>        .D....... set maximum timeout (in seconds) to wait for incoming connections (-1 is infinite, imply flag listen) (deprecated, use listen_timeout) (from INT_MIN to INT_MAX) (default -1)
+  -stimeout          <int>        .D....... set timeout (in microseconds) of socket TCP I/O operations (from INT_MIN to INT_MAX) (default 0)
+  -reorder_queue_size <int>        .D....... set number of packets to buffer for handling of reordered packets (from -1 to INT_MAX) (default -1)
+  -buffer_size       <int>        ED....... Underlying protocol send/receive buffer size (from -1 to INT_MAX) (default -1)
+  -user_agent        <string>     .D....... override User-Agent header (default "Lavf58.20.100")
+  -user-agent        <string>     .D....... override User-Agent header (deprecated, use user_agent) (default "Lavf58.20.100")
+
+sbg_demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 0)
+  -frame_size        <int>        .D.......  (from 0 to INT_MAX) (default 0)
+  -max_file_size     <int>        .D.......  (from 0 to INT_MAX) (default 5e+06)
+
+SDP demuxer AVOptions:
+  -sdp_flags         <flags>      .D....... SDP flags (default 0)
+     filter_src                   .D....... only receive packets from the negotiated peer IP
+     custom_io                    .D....... use custom I/O
+     rtcp_to_source               .D....... send RTCP packets to the source address of received packets
+  -allowed_media_types <flags>      .D....... set media types to accept from the server (default video+audio+data+subtitle)
+     video                        .D....... Video
+     audio                        .D....... Audio
+     data                         .D....... Data
+     subtitle                     .D....... Subtitle
+  -reorder_queue_size <int>        .D....... set number of packets to buffer for handling of reordered packets (from -1 to INT_MAX) (default -1)
+  -buffer_size       <int>        ED....... Underlying protocol send/receive buffer size (from -1 to INT_MAX) (default -1)
+
+ser demuxer AVOptions:
+  -framerate         <video_rate> .D....... set frame rate (default "25")
+
+sln demuxer AVOptions:
+  -sample_rate       <int>        .D.......  (from 0 to INT_MAX) (default 8000)
+  -channels          <int>        .D.......  (from 0 to INT_MAX) (default 1)
+
+tedcaptions_demuxer AVOptions:
+  -start_time        <int64>      .D...S... set the start time (offset) of the subtitles, in ms (from I64_MIN to I64_MAX) (default 15000)
+
+TTY demuxer AVOptions:
+  -chars_per_frame   <int>        .D.......  (from 1 to INT_MAX) (default 6000)
+  -video_size        <image_size> .D....... A string describing frame size, such as 640x480 or hd720.
+  -framerate         <video_rate> .D.......  (default "25")
+
+v210 demuxer AVOptions:
+  -video_size        <image_size> .D....... set frame size
+  -framerate         <video_rate> .D....... set frame rate (default "25")
+
+v210x demuxer AVOptions:
+  -video_size        <image_size> .D....... set frame size
+  -framerate         <video_rate> .D....... set frame rate (default "25")
+
+vc1 demuxer AVOptions:
+  -framerate         <video_rate> .D.......  (default "25")
+
+vobsub AVOptions:
+  -sub_name          <string>     .D....... URI for .sub file
+
+WAV demuxer AVOptions:
+  -ignore_length     <boolean>    .D....... Ignore length (default false)
+
+WebM DASH Manifest demuxer AVOptions:
+  -live              <boolean>    .D....... flag indicating that the input is a live file that only has the headers. (default false)
+  -bandwidth         <int>        .D....... bandwidth of this stream to be specified in the DASH manifest. (from 0 to INT_MAX) (default 0)
+
+WebVTT demuxer AVOptions:
+
+eXtended BINary text (XBIN) demuxer AVOptions:
+  -linespeed         <int>        .D....... set simulated line speed (bytes per second) (from 1 to INT_MAX) (default 6000)
+  -video_size        <image_size> .D....... set video size, such as 640x480 or hd720.
+  -framerate         <video_rate> .D....... set framerate (frames per second) (default "25")
+
+bmp demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+dds demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+dpx demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+exr demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+j2k demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+jpeg demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+jpegls demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+pam demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+pbm demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+pcx demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+pgmyuv demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+pgm demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+pictor demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+png demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+ppm demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+psd demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+qdraw demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+sgi demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+svg demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+sunrast demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+tiff demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+webp demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+xpm demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+xwd demuxer AVOptions:
+  -framerate         <video_rate> .D....... set the video framerate (default "25")
+  -loop              <boolean>    .D....... force loop over input file sequence (default false)
+  -pattern_type      <int>        .D....... set pattern type (from 0 to INT_MAX) (default 4)
+     glob_sequence                .D....... select glob/sequence pattern type
+     glob                         .D....... select glob pattern type
+     sequence                     .D....... select sequence pattern type
+     none                         .D....... disable pattern matching
+  -pixel_format      <string>     .D....... set video pixel format
+  -start_number      <int>        .D....... set first number in the sequence (from INT_MIN to INT_MAX) (default 0)
+  -start_number_range <int>        .D....... set range for looking at the first sequence number (from 1 to INT_MAX) (default 5)
+  -video_size        <image_size> .D....... set video size
+  -frame_size        <int>        .D....... force frame size in bytes (from 0 to INT_MAX) (default 0)
+  -ts_from_file      <int>        .D....... set frame timestamp from file's one (from 0 to 2) (default none)
+     none                         .D....... none
+     sec                          .D....... second precision
+     ns                           .D....... nano second precision
+
+AVFoundation input device AVOptions:
+  -list_devices      <int>        .D....... list available devices (from 0 to 1) (default false)
+     true                         .D....... 
+     false                        .D....... 
+  -video_device_index <int>        .D....... select video device by index for devices with same name (starts at 0) (from -1 to INT_MAX) (default -1)
+  -audio_device_index <int>        .D....... select audio device by index for devices with same name (starts at 0) (from -1 to INT_MAX) (default -1)
+  -pixel_format      <pix_fmt>    .D....... set pixel format (default yuv420p)
+  -framerate         <video_rate> .D....... set frame rate (default "ntsc")
+  -video_size        <image_size> .D....... set video size
+  -capture_cursor    <int>        .D....... capture the screen cursor (from 0 to 1) (default 0)
+  -capture_mouse_clicks <int>        .D....... capture the screen mouse clicks (from 0 to 1) (default 0)
+
+lavfi indev AVOptions:
+  -graph             <string>     .D....... set libavfilter graph
+  -graph_file        <string>     .D....... set libavfilter graph filename
+  -dumpgraph         <string>     .D....... dump graph to stderr
+
+ADTS muxer AVOptions:
+
+AIFF muxer AVOptions:
+
+APNG muxer AVOptions:
+
+ASF muxer AVOptions:
+
+ass muxer AVOptions:
+
+AST muxer AVOptions:
+
+ASF stream muxer AVOptions:
+
+AVI muxer AVOptions:
+
+dash muxer AVOptions:
+
+f4v muxer AVOptions:
+
+Fifo muxer AVOptions:
+
+Fifo test muxer AVOptions:
+
+flac muxer AVOptions:
+
+flv muxer AVOptions:
+
+frame hash encoder class AVOptions:
+
+frame hash encoder class AVOptions:
+
+GIF muxer AVOptions:
+
+hash encoder class AVOptions:
+
+HDS muxer AVOptions:
+
+hls muxer AVOptions:
+
+image2 muxer AVOptions:
+
+ipod muxer AVOptions:
+
+ismv muxer AVOptions:
+
+LATM/LOAS muxer AVOptions:
+
+MD5 encoder class AVOptions:
+
+matroska muxer AVOptions:
+
+matroska audio muxer AVOptions:
+
+mov muxer AVOptions:
+
+MP3 muxer AVOptions:
+
+mp4 muxer AVOptions:
+
+mpeg muxer AVOptions:
+
+vcd muxer AVOptions:
+
+dvd muxer AVOptions:
+
+svcd muxer AVOptions:
+
+vob muxer AVOptions:
+
+MPEGTS muxer AVOptions:
+
+mpjpeg_muxer AVOptions:
+
+MXF muxer AVOptions:
+
+MXF-D10 muxer AVOptions:
+
+MXF-OPAtom muxer AVOptions:
+
+nutenc AVOptions:
+
+Ogg audio muxer AVOptions:
+
+Ogg muxer AVOptions:
+
+Ogg video muxer AVOptions:
+
+Ogg Opus muxer AVOptions:
+
+psp muxer AVOptions:
+
+RTP muxer AVOptions:
+
+RTSP muxer AVOptions:
+  -initial_pause     <boolean>    .D....... do not start playing the stream immediately (default false)
+  -rtsp_transport    <flags>      ED....... set RTSP transport protocols (default 0)
+     udp                          ED....... UDP
+     tcp                          ED....... TCP
+     udp_multicast                .D....... UDP multicast
+     http                         .D....... HTTP tunneling
+  -rtsp_flags        <flags>      .D....... set RTSP flags (default 0)
+     filter_src                   .D....... only receive packets from the negotiated peer IP
+     listen                       .D....... wait for incoming connections
+     prefer_tcp                   ED....... try RTP via TCP first, if available
+  -allowed_media_types <flags>      .D....... set media types to accept from the server (default video+audio+data+subtitle)
+     video                        .D....... Video
+     audio                        .D....... Audio
+     data                         .D....... Data
+     subtitle                     .D....... Subtitle
+  -min_port          <int>        ED....... set minimum local UDP port (from 0 to 65535) (default 5000)
+  -max_port          <int>        ED....... set maximum local UDP port (from 0 to 65535) (default 65000)
+  -listen_timeout    <int>        .D....... set maximum timeout (in seconds) to wait for incoming connections (-1 is infinite, imply flag listen) (from INT_MIN to INT_MAX) (default -1)
+  -timeout           <int>        .D....... set maximum timeout (in seconds) to wait for incoming connections (-1 is infinite, imply flag listen) (deprecated, use listen_timeout) (from INT_MIN to INT_MAX) (default -1)
+  -stimeout          <int>        .D....... set timeout (in microseconds) of socket TCP I/O operations (from INT_MIN to INT_MAX) (default 0)
+  -reorder_queue_size <int>        .D....... set number of packets to buffer for handling of reordered packets (from -1 to INT_MAX) (default -1)
+  -buffer_size       <int>        ED....... Underlying protocol send/receive buffer size (from -1 to INT_MAX) (default -1)
+  -user_agent        <string>     .D....... override User-Agent header (default "Lavf58.20.100")
+  -user-agent        <string>     .D....... override User-Agent header (deprecated, use user_agent) (default "Lavf58.20.100")
+
+segment muxer AVOptions:
+
+stream_segment muxer AVOptions:
+
+smooth streaming muxer AVOptions:
+
+Ogg Speex muxer AVOptions:
+
+spdif AVOptions:
+
+Tee muxer AVOptions:
+
+tg2 muxer AVOptions:
+
+tgp muxer AVOptions:
+
+WAV muxer AVOptions:
+
+webm muxer AVOptions:
+
+WebM DASH Manifest muxer AVOptions:
+
+WebM Chunk Muxer AVOptions:
+
+WebP muxer AVOptions:
+
+sdl2 outdev AVOptions:
+
+AVCodecContext AVOptions:
+  -flags             <flags>      ED.VAS... (default 0)
+     unaligned                    .D.V..... allow decoders to produce unaligned output
+     gray                         ED.V..... only decode/encode grayscale
+     truncated                    .D.V..... Input bitstream might be randomly truncated
+     low_delay                    ED.V..... force low delay
+     bitexact                     ED.VAS... use only bitexact functions (except (I)DCT)
+     output_corrupt               .D.V..... Output even potentially corrupted frames
+  -ar                <int>        ED..A.... set audio sampling rate (in Hz) (from 0 to INT_MAX) (default 0)
+  -ac                <int>        ED..A.... set number of audio channels (from 0 to INT_MAX) (default 0)
+  -bug               <flags>      .D.V..... work around not autodetected encoder bugs (default autodetect)
+     autodetect                   .D.V.....
+     xvid_ilace                   .D.V..... Xvid interlacing bug (autodetected if FOURCC == XVIX)
+     ump4                         .D.V..... (autodetected if FOURCC == UMP4)
+     no_padding                   .D.V..... padding bug (autodetected)
+     amv                          .D.V.....
+     qpel_chroma                  .D.V.....
+     std_qpel                     .D.V..... old standard qpel (autodetected per FOURCC/version)
+     qpel_chroma2                 .D.V.....
+     direct_blocksize              .D.V..... direct-qpel-blocksize bug (autodetected per FOURCC/version)
+     edge                         .D.V..... edge padding bug (autodetected per FOURCC/version)
+     hpel_chroma                  .D.V.....
+     dc_clip                      .D.V.....
+     ms                           .D.V..... work around various bugs in Microsoft's broken decoders
+     trunc                        .D.V..... truncated frames
+     iedge                        .D.V.....
+  -strict            <int>        ED.VA.... how strictly to follow the standards (from INT_MIN to INT_MAX) (default normal)
+     very                         ED.VA.... strictly conform to a older more strict version of the spec or reference software
+     strict                       ED.VA.... strictly conform to all the things in the spec no matter what the consequences
+     normal                       ED.VA....
+     unofficial                   ED.VA.... allow unofficial extensions
+     experimental                 ED.VA.... allow non-standardized experimental things
+  -err_detect        <flags>      .D.VA.... set error detection flags (default 0)
+     crccheck                     .D.VA.... verify embedded CRCs
+     bitstream                    .D.VA.... detect bitstream specification deviations
+     buffer                       .D.VA.... detect improper bitstream length
+     explode                      .D.VA.... abort decoding on minor error detection
+     ignore_err                   .D.VA.... ignore errors
+     careful                      .D.VA.... consider things that violate the spec, are fast to check and have not been seen in the wild as errors
+     compliant                    .D.VA.... consider all spec non compliancies as errors
+     aggressive                   .D.VA.... consider things that a sane encoder should not do as an error
+  -idct              <int>        ED.V..... select IDCT implementation (from 0 to INT_MAX) (default auto)
+     auto                         ED.V.....
+     int                          ED.V.....
+     simple                       ED.V.....
+     simplemmx                    ED.V.....
+     arm                          ED.V.....
+     altivec                      ED.V.....
+     simplearm                    ED.V.....
+     simplearmv5te                ED.V.....
+     simplearmv6                  ED.V.....
+     simpleneon                   ED.V.....
+     xvid                         ED.V.....
+     xvidmmx                      ED.V..... deprecated, for compatibility only
+     faani                        ED.V..... floating point AAN IDCT
+     simpleauto                   ED.V.....
+  -ec                <flags>      .D.V..... set error concealment strategy (default guess_mvs+deblock)
+     guess_mvs                    .D.V..... iterative motion vector (MV) search (slow)
+     deblock                      .D.V..... use strong deblock filter for damaged MBs
+     favor_inter                  .D.V..... favor predicting from the previous frame
+  -debug             <flags>      ED.VAS... print specific debug info (default 0)
+     pict                         .D.V..... picture info
+     bitstream                    .D.V.....
+     mb_type                      .D.V..... macroblock (MB) type
+     qp                           .D.V..... per-block quantization parameter (QP)
+     dct_coeff                    .D.V.....
+     green_metadata               .D.V.....
+     skip                         .D.V.....
+     startcode                    .D.V.....
+     er                           .D.V..... error recognition
+     mmco                         .D.V..... memory management control operations (H.264)
+     bugs                         .D.V.....
+     buffers                      .D.V..... picture buffer allocations
+     thread_ops                   .D.VA.... threading operations
+     nomc                         .D.VA.... skip motion compensation
+  -flags2            <flags>      ED.VA.... (default 0)
+     ignorecrop                   .D.V..... ignore cropping information from sps
+     chunks                       .D.V..... Frame data might be split into multiple chunks
+     showall                      .D.V..... Show all frames before the first keyframe
+     export_mvs                   .D.V..... export motion vectors through frame side data
+     skip_manual                  .D.V..... do not skip samples and export skip information as frame side data
+     ass_ro_flush_noop              .D...S... do not reset ASS ReadOrder field on flush
+  -threads           <int>        ED.VA.... set the number of threads (from 0 to INT_MAX) (default 1)
+     auto                         ED.V..... autodetect a suitable number of threads to use
+  -skip_top          <int>        .D.V..... number of macroblock rows at the top which are skipped (from INT_MIN to INT_MAX) (default 0)
+  -skip_bottom       <int>        .D.V..... number of macroblock rows at the bottom which are skipped (from INT_MIN to INT_MAX) (default 0)
+  -lowres            <int>        .D.VA.... decode at 1= 1/2, 2=1/4, 3=1/8 resolutions (from 0 to INT_MAX) (default 0)
+  -skip_loop_filter  <int>        .D.V..... skip loop filtering process for the selected frames (from INT_MIN to INT_MAX) (default default)
+     none                         .D.V..... discard no frame
+     default                      .D.V..... discard useless frames
+     noref                        .D.V..... discard all non-reference frames
+     bidir                        .D.V..... discard all bidirectional frames
+     nokey                        .D.V..... discard all frames except keyframes
+     nointra                      .D.V..... discard all frames except I frames
+     all                          .D.V..... discard all frames
+  -skip_idct         <int>        .D.V..... skip IDCT/dequantization for the selected frames (from INT_MIN to INT_MAX) (default default)
+     none                         .D.V..... discard no frame
+     default                      .D.V..... discard useless frames
+     noref                        .D.V..... discard all non-reference frames
+     bidir                        .D.V..... discard all bidirectional frames
+     nokey                        .D.V..... discard all frames except keyframes
+     nointra                      .D.V..... discard all frames except I frames
+     all                          .D.V..... discard all frames
+  -skip_frame        <int>        .D.V..... skip decoding for the selected frames (from INT_MIN to INT_MAX) (default default)
+     none                         .D.V..... discard no frame
+     default                      .D.V..... discard useless frames
+     noref                        .D.V..... discard all non-reference frames
+     bidir                        .D.V..... discard all bidirectional frames
+     nokey                        .D.V..... discard all frames except keyframes
+     nointra                      .D.V..... discard all frames except I frames
+     all                          .D.V..... discard all frames
+  -channel_layout    <uint64>     ED..A.... (from 0 to 1.84467e+19) (default 0)
+  -request_channel_layout <uint64>     .D..A.... (from 0 to 1.84467e+19) (default 0)
+  -ticks_per_frame   <int>        ED.VA.... (from 1 to INT_MAX) (default 1)
+  -color_primaries   <int>        ED.V..... color primaries (from 1 to INT_MAX) (default unknown)
+     bt709                        ED.V..... BT.709
+     unknown                      ED.V..... Unspecified
+     bt470m                       ED.V..... BT.470 M
+     bt470bg                      ED.V..... BT.470 BG
+     smpte170m                    ED.V..... SMPTE 170 M
+     smpte240m                    ED.V..... SMPTE 240 M
+     film                         ED.V..... Film
+     bt2020                       ED.V..... BT.2020
+     smpte428                     ED.V..... SMPTE 428-1
+     smpte428_1                   ED.V..... SMPTE 428-1
+     smpte431                     ED.V..... SMPTE 431-2
+     smpte432                     ED.V..... SMPTE 422-1
+     jedec-p22                    ED.V..... JEDEC P22
+     unspecified                  ED.V..... Unspecified
+  -color_trc         <int>        ED.V..... color transfer characteristics (from 1 to INT_MAX) (default unknown)
+     bt709                        ED.V..... BT.709
+     unknown                      ED.V..... Unspecified
+     gamma22                      ED.V..... BT.470 M
+     gamma28                      ED.V..... BT.470 BG
+     smpte170m                    ED.V..... SMPTE 170 M
+     smpte240m                    ED.V..... SMPTE 240 M
+     linear                       ED.V..... Linear
+     log100                       ED.V..... Log
+     log316                       ED.V..... Log square root
+     iec61966-2-4                 ED.V..... IEC 61966-2-4
+     bt1361e                      ED.V..... BT.1361
+     iec61966-2-1                 ED.V..... IEC 61966-2-1
+     bt2020-10                    ED.V..... BT.2020 - 10 bit
+     bt2020-12                    ED.V..... BT.2020 - 12 bit
+     smpte2084                    ED.V..... SMPTE 2084
+     smpte428                     ED.V..... SMPTE 428-1
+     arib-std-b67                 ED.V..... ARIB STD-B67
+     unspecified                  ED.V..... Unspecified
+     log                          ED.V..... Log
+     log_sqrt                     ED.V..... Log square root
+     iec61966_2_4                 ED.V..... IEC 61966-2-4
+     bt1361                       ED.V..... BT.1361
+     iec61966_2_1                 ED.V..... IEC 61966-2-1
+     bt2020_10bit                 ED.V..... BT.2020 - 10 bit
+     bt2020_12bit                 ED.V..... BT.2020 - 12 bit
+     smpte428_1                   ED.V..... SMPTE 428-1
+  -colorspace        <int>        ED.V..... color space (from 0 to INT_MAX) (default unknown)
+     rgb                          ED.V..... RGB
+     bt709                        ED.V..... BT.709
+     unknown                      ED.V..... Unspecified
+     fcc                          ED.V..... FCC
+     bt470bg                      ED.V..... BT.470 BG
+     smpte170m                    ED.V..... SMPTE 170 M
+     smpte240m                    ED.V..... SMPTE 240 M
+     ycgco                        ED.V..... YCGCO
+     bt2020nc                     ED.V..... BT.2020 NCL
+     bt2020c                      ED.V..... BT.2020 CL
+     smpte2085                    ED.V..... SMPTE 2085
+     unspecified                  ED.V..... Unspecified
+     ycocg                        ED.V..... YCGCO
+     bt2020_ncl                   ED.V..... BT.2020 NCL
+     bt2020_cl                    ED.V..... BT.2020 CL
+  -color_range       <int>        ED.V..... color range (from 0 to INT_MAX) (default unknown)
+     unknown                      ED.V..... Unspecified
+     tv                           ED.V..... MPEG (219*2^(n-8))
+     pc                           ED.V..... JPEG (2^n-1)
+     unspecified                  ED.V..... Unspecified
+     mpeg                         ED.V..... MPEG (219*2^(n-8))
+     jpeg                         ED.V..... JPEG (2^n-1)
+  -chroma_sample_location <int>        ED.V..... chroma sample location (from 0 to INT_MAX) (default unknown)
+     unknown                      ED.V..... Unspecified
+     left                         ED.V..... Left
+     center                       ED.V..... Center
+     topleft                      ED.V..... Top-left
+     top                          ED.V..... Top
+     bottomleft                   ED.V..... Bottom-left
+     bottom                       ED.V..... Bottom
+     unspecified                  ED.V..... Unspecified
+  -thread_type       <flags>      ED.VA.... select multithreading type (default slice+frame)
+     slice                        ED.V.....
+     frame                        ED.V.....
+  -request_sample_fmt <sample_fmt> .D..A.... sample format audio decoders should prefer (default none)
+  -sub_charenc       <string>     .D...S... set input text subtitles character encoding
+  -sub_charenc_mode  <flags>      .D...S... set input text subtitles character encoding mode (default 0)
+     do_nothing                   .D...S...
+     auto                         .D...S...
+     pre_decoder                  .D...S...
+     ignore                       .D...S...
+  -sub_text_format   <int>        .D...S... set decoded text subtitle format (from 0 to 1) (default ass_with_timings)
+     ass                          .D...S...
+     ass_with_timings              .D...S...
+  -refcounted_frames <boolean>    .D.VA.... (default false)
+  -apply_cropping    <boolean>    .D.V..... (default true)
+  -skip_alpha        <boolean>    .D.V..... Skip processing alpha (default false)
+  -field_order       <int>        ED.V..... Field order (from 0 to 5) (default 0)
+     progressive                  ED.V.....
+     tt                           ED.V.....
+     bb                           ED.V.....
+     tb                           ED.V.....
+     bt                           ED.V.....
+  -dump_separator    <string>     ED.VAS... set information dump field separator
+  -codec_whitelist   <string>     .D.VAS... List of decoders that are allowed to be used
+  -max_pixels        <int64>      ED.VAS... Maximum number of pixels (from 0 to INT_MAX) (default INT_MAX)
+  -hwaccel_flags     <flags>      .D.V..... (default ignore_level)
+     ignore_level                 .D.V..... ignore level even if the codec level used is unknown or higher than the maximum supported level reported by the hardware driver
+     allow_high_depth              .D.V..... allow to output YUV pixel formats with a different chroma sampling than 4:2:0 and/or other than 8 bits per component
+     allow_profile_mismatch              .D.V..... attempt to decode anyway if HW accelerated decoder's supported profiles do not exactly match the stream
+  -extra_hw_frames   <int>        .D.V..... Number of extra hardware frames to allocate for the user (from -1 to INT_MAX) (default -1)
+
+amv encoder AVOptions:
+
+APNG encoder AVOptions:
+
+cinepak AVOptions:
+
+cljr encoder AVOptions:
+
+dnxhd AVOptions:
+
+dvvideo encoder AVOptions:
+
+ffv1 encoder AVOptions:
+
+ffvhuff AVOptions:
+
+flv encoder AVOptions:
+
+GIF encoder AVOptions:
+
+h261 encoder AVOptions:
+
+H.263 encoder AVOptions:
+
+H.263p encoder AVOptions:
+
+Hap encoder AVOptions:
+
+huffyuv AVOptions:
+
+jpeg 2000 encoder AVOptions:
+
+jpegls AVOptions:
+
+ljpeg AVOptions:
+
+magicyuv AVOptions:
+
+mjpeg encoder AVOptions:
+
+mpeg1video encoder AVOptions:
+
+mpeg2video encoder AVOptions:
+
+MPEG4 encoder AVOptions:
+
+msmpeg4v2 encoder AVOptions:
+
+msmpeg4v3 encoder AVOptions:
+
+PNG encoder AVOptions:
+
+ProRes encoder AVOptions:
+
+RoQ AVOptions:
+
+rv10 encoder AVOptions:
+
+rv20 encoder AVOptions:
+
+sgi AVOptions:
+
+snow encoder AVOptions:
+
+sunrast AVOptions:
+
+svq1enc AVOptions:
+
+targa AVOptions:
+
+TIFF encoder AVOptions:
+
+utvideo AVOptions:
+
+SMPTE VC-2 encoder AVOptions:
+
+wmv1 encoder AVOptions:
+
+wmv2 encoder AVOptions:
+
+AAC encoder AVOptions:
+
+AC-3 Encoder AVOptions:
+
+Fixed-Point AC-3 Encoder AVOptions:
+
+alacenc AVOptions:
+
+DCA (DTS Coherent Acoustics) AVOptions:
+
+E-AC-3 Encoder AVOptions:
+
+FLAC encoder AVOptions:
+
+Opus encoder AVOptions:
+
+sbc encoder AVOptions:
+
+WavPack encoder AVOptions:
+
+g726 AVOptions:
+
+g726le AVOptions:
+
+VOBSUB subtitle encoder AVOptions:
+
+at_aac_enc AVOptions:
+
+at_alac_enc AVOptions:
+
+at_ilbc_enc AVOptions:
+
+at_pcm_alaw_enc AVOptions:
+
+at_pcm_mulaw_enc AVOptions:
+
+libaom-av1 encoder AVOptions:
+
+libmp3lame encoder AVOptions:
+
+libopencore_amrnb AVOptions:
+
+libopenjpeg AVOptions:
+
+libopus AVOptions:
+
+libspeex AVOptions:
+
+libvorbis AVOptions:
+
+libvpx-vp8 encoder AVOptions:
+
+libvpx-vp9 encoder AVOptions:
+
+libx264 AVOptions:
+
+libx264rgb AVOptions:
+
+libx265 AVOptions:
+
+libxvid AVOptions:
+
+h264_videotoolbox AVOptions:
+
+hevc_videotoolbox AVOptions:
+
+EXR AVOptions:
+  -layer             <string>     .D.V..... Set the decoding layer (default "")
+  -gamma             <float>      .D.V..... Set the float gamma value when decoding (from 0.001 to FLT_MAX) (default 1)
+  -apply_trc         <int>        .D.V..... color transfer characteristics to apply to EXR linear input (from 1 to 18) (default gamma)
+     bt709                        .D.V..... BT.709
+     gamma                        .D.V..... gamma
+     gamma22                      .D.V..... BT.470 M
+     gamma28                      .D.V..... BT.470 BG
+     smpte170m                    .D.V..... SMPTE 170 M
+     smpte240m                    .D.V..... SMPTE 240 M
+     linear                       .D.V..... Linear
+     log                          .D.V..... Log
+     log_sqrt                     .D.V..... Log square root
+     iec61966_2_4                 .D.V..... IEC 61966-2-4
+     bt1361                       .D.V..... BT.1361
+     iec61966_2_1                 .D.V..... IEC 61966-2-1
+     bt2020_10bit                 .D.V..... BT.2020 - 10 bit
+     bt2020_12bit                 .D.V..... BT.2020 - 12 bit
+     smpte2084                    .D.V..... SMPTE ST 2084
+     smpte428_1                   .D.V..... SMPTE ST 428-1
+
+FIC decoder AVOptions:
+  -skip_cursor       <boolean>    .D.V..... skip the cursor (default false)
+
+FITS decoder AVOptions:
+  -blank_value       <int>        .D.V..... value that is used to replace BLANK pixels in data array (from 0 to 65535) (default 0)
+
+frwu Decoder AVOptions:
+  -change_field_order <boolean>    .D.V..... Change field order (default false)
+
+gif decoder AVOptions:
+  -trans_color       <int>        .D.V..... color value (ARGB) that is used instead of transparent color (from 0 to UINT32_MAX) (default 1.67772e+07)
+
+H264 Decoder AVOptions:
+  -enable_er         <boolean>    .D.V..... Enable error resilience on damaged frames (unsafe) (default auto)
+  -x264_build        <int>        .D.V..... Assume this x264 version if no x264 version found in any SEI (from -1 to INT_MAX) (default -1)
+
+HEVC decoder AVOptions:
+  -apply_defdispwin  <boolean>    .D.V..... Apply default display window from VUI (default false)
+  -strict-displaywin <boolean>    .D.V..... stricly apply default display window size (default false)
+
+jpeg2000 AVOptions:
+  -lowres            <int>        .D.V..... Lower the decoding resolution by a power of two (from 0 to 33) (default 0)
+
+MJPEG decoder AVOptions:
+  -extern_huff       <boolean>    .D.V..... Use external huffman table. (default false)
+
+MPEG4 Video Decoder AVOptions:
+
+rasc decoder AVOptions:
+  -skip_cursor       <boolean>    .D.V..... skip the cursor (default false)
+
+rawdec AVOptions:
+  -top               <boolean>    .D.V..... top field first (default auto)
+
+SMPTE 302M Decoder AVOptions:
+  -non_pcm_mode      <int>        .D..A.... Chooses what to do with NON-PCM (from 0 to 3) (default decode_drop)
+     copy                         .D..A.... Pass NON-PCM through unchanged
+     drop                         .D..A.... Drop NON-PCM
+     decode_copy                  .D..A.... Decode if possible else passthrough
+     decode_drop                  .D..A.... Decode if possible else drop
+
+V210 Decoder AVOptions:
+  -custom_stride     <int>        .D.V..... Custom V210 stride (from INT_MIN to INT_MAX) (default 0)
+
+AAC decoder AVOptions:
+  -dual_mono_mode    <int>        .D..A.... Select the channel to decode for dual mono (from -1 to 2) (default auto)
+     auto                         .D..A.... autoselection
+     main                         .D..A.... Select Main/Left channel
+     sub                          .D..A.... Select Sub/Right channel
+     both                         .D..A.... Select both channels
+
+AC3 decoder AVOptions:
+  -cons_noisegen     <boolean>    .D..A.... enable consistent noise generation (default false)
+  -drc_scale         <float>      .D..A.... percentage of dynamic range compression to apply (from 0 to 6) (default 1)
+  -heavy_compr       <boolean>    .D..A.... enable heavy dynamic range compression (default false)
+  -target_level      <int>        .D..A.... target level in -dBFS (0 not applied) (from -31 to 0) (default 0)
+
+Fixed-Point AC-3 Decoder AVOptions:
+  -cons_noisegen     <boolean>    .D..A.... enable consistent noise generation (default false)
+  -drc_scale         <float>      .D..A.... percentage of dynamic range compression to apply (from 0 to 6) (default 1)
+  -heavy_compr       <boolean>    .D..A.... enable heavy dynamic range compression (default false)
+
+alac AVOptions:
+  -extra_bits_bug    <boolean>    .D..A.... Force non-standard decoding process (default false)
+
+APE decoder AVOptions:
+  -max_samples       <int>        .D..A.... maximum number of samples decoded per call (from 1 to INT_MAX) (default 4608)
+     all                          .D..A.... no maximum. decode all samples for each packet at once
+
+DCA decoder AVOptions:
+  -core_only         <boolean>    .D..A.... Decode core only without extensions (default false)
+
+E-AC3 decoder AVOptions:
+  -cons_noisegen     <boolean>    .D..A.... enable consistent noise generation (default false)
+  -drc_scale         <float>      .D..A.... percentage of dynamic range compression to apply (from 0 to 6) (default 1)
+  -heavy_compr       <boolean>    .D..A.... enable heavy dynamic range compression (default false)
+  -target_level      <int>        .D..A.... target level in -dBFS (0 not applied) (from -31 to 0) (default 0)
+
+evrc AVOptions:
+  -postfilter        <boolean>    .D..A.... enable postfilter (default true)
+
+FLAC decoder AVOptions:
+  -use_buggy_lpc     <boolean>    .D..A.... emulate old buggy lavc behavior (default false)
+
+G.723.1 decoder AVOptions:
+  -postfilter        <boolean>    .D..A.... enable postfilter (default true)
+
+Opus Decoder AVOptions:
+  -apply_phase_inv   <boolean>    .D..A.... Apply intensity stereo phase inversion (default true)
+
+TTA Decoder AVOptions:
+  -password          <string>     .D..A.... Set decoding password
+
+g722 decoder AVOptions:
+  -bits_per_codeword <int>        .D..A.... Bits per G722 codeword (from 6 to 8) (default 8)
+
+Closed caption Decoder AVOptions:
+  -real_time         <boolean>    .D...S... emit subtitle events as they are decoded for real-time display (default false)
+
+DVB Sub Decoder AVOptions:
+  -compute_edt       <boolean>    .D...S... compute end of time using pts or timeout (default false)
+  -compute_clut      <boolean>    .D...S... compute clut when not available(-1) or always(1) or never(0) (default auto)
+  -dvb_substream     <int>        .D...S...  (from -1 to 63) (default -1)
+
+dvdsubdec AVOptions:
+  -palette           <string>     .D...S... set the global palette
+  -ifo_palette       <string>     .D...S... obtain the global palette from .IFO file
+  -forced_subs_only  <boolean>    .D...S... Only show forced subtitles (default false)
+
+PGS subtitle decoder AVOptions:
+  -forced_subs_only  <boolean>    .D...S... Only show forced subtitles (default false)
+
+pjs decoder AVOptions:
+  -keep_ass_markup   <boolean>    .D...S... Set if ASS tags must be escaped (default false)
+
+stl decoder AVOptions:
+  -keep_ass_markup   <boolean>    .D...S... Set if ASS tags must be escaped (default false)
+
+subviewer1 decoder AVOptions:
+  -keep_ass_markup   <boolean>    .D...S... Set if ASS tags must be escaped (default false)
+
+text decoder AVOptions:
+  -keep_ass_markup   <boolean>    .D...S... Set if ASS tags must be escaped (default false)
+
+vplayer decoder AVOptions:
+  -keep_ass_markup   <boolean>    .D...S... Set if ASS tags must be escaped (default false)
+
+libopenjpeg AVOptions:
+  -lowqual           <int>        .D.V..... Limit the number of layers used for decoding (from 0 to INT_MAX) (default 0)
+
+libopusdec AVOptions:
+  -apply_phase_inv   <boolean>    .D..A.... Apply intensity stereo phase inversion (default true)
+
