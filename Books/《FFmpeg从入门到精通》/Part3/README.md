@@ -206,8 +206,64 @@ format 字段说明：
 | size             | 媒体文件大小
 | bit_rate         | 媒体文件码率
 
-22.
+22.通过 `ffprobe -show_frames 1.mp4` 查看视频文件中的帧信息
 
+输出的信息使用 FRAME 标签括起来
+
+例子:
+```
+[FRAME]
+media_type=video
+stream_index=0
+key_frame=1
+pkt_pts=0
+pkt_pts_time=0.000000
+pkt_dts=0
+pkt_dts_time=0.000000
+best_effort_timestamp=0
+best_effort_timestamp_time=0.000000
+pkt_duration=1024
+pkt_duration_time=0.066667
+pkt_pos=336
+pkt_size=35377
+width=512
+height=288
+pix_fmt=yuv420p
+sample_aspect_ratio=N/A
+pict_type=I
+coded_picture_number=0
+display_picture_number=0
+interlaced_frame=0
+top_field_first=0
+repeat_pict=0
+color_range=unknown
+color_space=unknown
+color_primaries=unknown
+color_transfer=unknown
+chroma_location=left
+[/FRAME]
+```
+
+frame 字段说明：
+
+| 属性 | 说明 | 值 |
+| --- | --- | --- |
+| media_type | 帧的类型(视频、音频、字幕等) | video |
+| stream_index | 帧所在的索引区域 | 0 |
+| key_frame | 是否为关键帧 | 1 |
+| pkt_pts | Frame包的 pts | 0 |
+| pkt_pts_time | Frame包的 pts 的时间显示  | 0.000000 |
+| pkt_dts | Frame包的 dts | 0 |
+| pkt_dts_time | Frame包的 dts 的时间显示 | 0.000000 |
+| pkt_duration | Frame包的时长 | 1024 |
+| pkt_duration_time | Frame包的时长时间显示 | 0.066667 |
+| pkt_pos | Frame包所在文件的偏移位置 | 336 |
+| width | 帧的显示宽度 | 512 |
+| height | 帧的显示高度 | 288 |
+| pix_fmt | 帧的图像色彩格式 | yuv420p |
+| pict_type | 帧类型 | I |
+
+23.
 
 
 
