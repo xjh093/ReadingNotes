@@ -1,6 +1,7 @@
 ## 第1章 FFmpeg简介
 
 1.FF 指的是 Fast Forward.
+  mpeg: Moving Picture Experts Group (动态图像专家组)
 
 2.FFmpeg 历史
 - 2000年，法国天才程序员 Fabrice Bellard 开发初版。
