@@ -263,8 +263,122 @@ frame 字段说明：
 | pix_fmt | 帧的图像色彩格式 | yuv420p |
 | pict_type | 帧类型 | I |
 
-23.
+23.通过 `ffprobe -show_streams 1.mp4` 查看视频文件中的帧信息
 
+输出的信息使用 STREAM 标签括起来
+
+```
+[STREAM]
+index=0
+codec_name=h264
+codec_long_name=H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10
+profile=High
+codec_type=video
+codec_time_base=1/30
+codec_tag_string=avc1
+codec_tag=0x31637661
+width=512
+height=288
+coded_width=512
+coded_height=288
+has_b_frames=0
+sample_aspect_ratio=N/A
+display_aspect_ratio=N/A
+pix_fmt=yuv420p
+level=21
+color_range=unknown
+color_space=unknown
+color_transfer=unknown
+color_primaries=unknown
+chroma_location=left
+field_order=unknown
+timecode=N/A
+refs=1
+is_avc=true
+nal_length_size=4
+id=N/A
+r_frame_rate=15/1
+avg_frame_rate=15/1
+time_base=1/15360
+start_pts=0
+start_time=0.000000
+duration_ts=226304
+duration=14.733333
+bit_rate=863095
+max_bit_rate=N/A
+bits_per_raw_sample=8
+nb_frames=221
+nb_read_frames=N/A
+nb_read_packets=N/A
+DISPOSITION:default=1
+DISPOSITION:dub=0
+DISPOSITION:original=0
+DISPOSITION:comment=0
+DISPOSITION:lyrics=0
+DISPOSITION:karaoke=0
+DISPOSITION:forced=0
+DISPOSITION:hearing_impaired=0
+DISPOSITION:visual_impaired=0
+DISPOSITION:clean_effects=0
+DISPOSITION:attached_pic=0
+DISPOSITION:timed_thumbnails=0
+TAG:language=und
+TAG:handler_name=VideoHandler
+[/STREAM]
+[STREAM]
+index=1
+codec_name=aac
+codec_long_name=AAC (Advanced Audio Coding)
+profile=LC
+codec_type=audio
+codec_time_base=1/48000
+codec_tag_string=mp4a
+codec_tag=0x6134706d
+sample_fmt=fltp
+sample_rate=48000
+channels=2
+channel_layout=stereo
+bits_per_sample=0
+id=N/A
+r_frame_rate=0/0
+avg_frame_rate=0/0
+time_base=1/48000
+start_pts=0
+start_time=0.000000
+duration_ts=707568
+duration=14.741000
+bit_rate=96018
+max_bit_rate=96018
+bits_per_raw_sample=N/A
+nb_frames=692
+nb_read_frames=N/A
+nb_read_packets=N/A
+DISPOSITION:default=1
+DISPOSITION:dub=0
+DISPOSITION:original=0
+DISPOSITION:comment=0
+DISPOSITION:lyrics=0
+DISPOSITION:karaoke=0
+DISPOSITION:forced=0
+DISPOSITION:hearing_impaired=0
+DISPOSITION:visual_impaired=0
+DISPOSITION:clean_effects=0
+DISPOSITION:attached_pic=0
+DISPOSITION:timed_thumbnails=0
+TAG:language=und
+TAG:handler_name=SoundHandler
+[/STREAM]
+
+```
+
+stream 字段说明
+
+| 属性 | 说明 | 值 |
+| --- | --- | --- |
+| index | 流所在的索引区域 | 0 |
+| codec_name | 编码名 | h264 |
+| codec_long_name | 编码全名 | MPEG-4 part 10 |
+| profile | 编码的 profile | High |
 
 
 
